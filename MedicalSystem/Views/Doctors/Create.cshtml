@@ -1,0 +1,77 @@
+﻿@model MedicalSystem.Models.Doctor
+
+@{
+    ViewData["Title"] = Model==null? "Create" :"Edit" ;
+}
+
+<h1>@ViewData["Title"] Doctor</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="@ViewData["Title"]" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="doctorId" class="control-label" hidden></label>
+                <input asp-for="doctorId"   class="form-control" hidden />
+                <span asp-validation-for="doctorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fullName" class="control-label"></label>
+                <input asp-for="fullName" class="form-control" />
+                <span asp-validation-for="fullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="imageUser" class="control-label"></label>
+                <input type="file" asp-for="imageUser" class="form-control" />
+                <span asp-validation-for="imageUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="sexe" class="control-label"></label><br>
+
+                <label for="male">male</label>
+                <input asp-for="sexe" type="radio" value="male" /> <br>
+                <label for="female">female</label>
+                <input asp-for="sexe" type="radio" value="female" />
+               
+               
+                <span asp-validation-for="sexe" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="age" class="control-label"></label>
+                <input asp-for="age" class="form-control" />
+                <span asp-validation-for="age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="birthDay" class="control-label"></label>
+                <input asp-for="birthDay" class="form-control" />
+                <span asp-validation-for="birthDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cin" class="control-label"></label>
+                <input asp-for="cin" class="form-control" />
+                <span asp-validation-for="cin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Specialiteid" class="control-label"></label>
+                <select asp-for="Specialiteid" class="form-control"
+                asp-items="@(new SelectList(ViewBag.Specialities,"specId","specName"))">
+                    <option value="">Select medical specialitie name... </option>
+                    </select>
+                <span asp-validation-for="Specialiteid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

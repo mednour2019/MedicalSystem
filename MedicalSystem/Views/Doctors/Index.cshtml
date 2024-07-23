@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MedicalSystem.Models.Doctor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.doctorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.imageUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sexe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.birthDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specialiteid)
+            </th>
+            <th> Events</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.doctorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fullName)
+            </td>
+            <td>
+                    <img src="images/@item.imageUser" style="=width:35px; height:35px">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sexe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.birthDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.medicalSpecialities.specName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.doctorId }) |
+               
+                @Html.ActionLink("Delete", "Delete", new {  id=item.doctorId },
+                new {onclick="return confirm('Are you sure from deleted?')"})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
